@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import Footer from './components/Footer';
 
+import { BeerService } from './services';
+
 const AppWrapper = styled.div`
   text-align: center;
 `
@@ -55,11 +57,16 @@ const BeerGenerator = styled.button`
   }
 `
 
+const getABeer = () => {
+  BeerService.getRandom().then(data => console.log(data));
+};
+
 function App() {
   return (
     <AppWrapper>
       <HeaderText>Grab an IPA <span aria-label="" role="img">🍻</span></HeaderText>
-      <BeerGenerator>Generate some beers!</BeerGenerator>
+      <BeerGenerator onClick={() => { getABeer() }}>Generate some beers!</BeerGenerator>
+      <p>Click the button above to generate a list of IPA beers and their information!</p>
       <Footer />
     </AppWrapper>
   );
