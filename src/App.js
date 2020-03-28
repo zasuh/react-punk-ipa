@@ -14,22 +14,27 @@ const AppWrapper = styled.div`
 const HeaderText = styled.h1`
   ${tw`text-6xl`}
 `
+const Desc = styled.p`
+  ${tw`text-2xl`}
+`
 const Button = styled.button`
   ${tw`bg-gray-300 text-yellow-900 px-4 m-4 rounded h-10 text-2xl`}
 `
 
-/* Methods */
-const getABeer = () => {
-  BeerService.getRandom().then(data => console.log(data));
-};
+const App = () => {
+  const [beers, setBeers] = React.useState(null);
+  const getABeer = () => {
+    BeerService.getRandom().then(data => {
+      setBeers(data)
+    });
+  };
 
-function App() {
   return (
     <AppWrapper>
       <HeaderText>Grab an IPA <span aria-label="" role="img">🍻</span></HeaderText>
       <Button onClick={() => { getABeer() }}>Generate some beers!</Button>
-      <Card />
-      <p>Click the button above to generate a list of IPA beers and their information!</p>
+      {beers !== null ? <Card data={beers}/> : null }
+      <Desc>Click the button above to generate a list of IPA beers and their information!</Desc>
       <Footer />
     </AppWrapper>
   );
