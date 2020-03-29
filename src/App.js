@@ -29,12 +29,16 @@ const App = () => {
     });
   };
 
+  const Description = () => {
+    return <Desc>Click the button above to generate an IPA beer!</Desc>
+  }
+
   return (
     <AppWrapper>
       <HeaderText>Grab an IPA <span aria-label="" role="img">🍻</span></HeaderText>
-      <Button onClick={() => { getABeer() }}>Generate some beers!</Button>
+      <Button onClick={() => { getABeer() }}>Generate a beer!</Button>
       {beers !== null ? <Card data={beers}/> : null }
-      <Desc>Click the button above to generate a list of IPA beers and their information!</Desc>
+      {beers === null ? <Description /> : null}
       <Footer />
     </AppWrapper>
   );
